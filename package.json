@@ -1,0 +1,27 @@
+{
+  "name": "cli-weather",
+  "version": "1.0.0",
+  "description": "",
+  "main": "weather.js",
+  "bin": {
+    "weather": "weather.js"
+  },
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KatiaZakharina/cli-weather.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KatiaZakharina/cli-weather/issues"
+  },
+  "homepage": "https://github.com/KatiaZakharina/cli-weather#readme",
+  "dependencies": {
+    "chalk": "^5.0.1"
+  }
+}
