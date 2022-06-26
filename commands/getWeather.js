@@ -1,3 +1,5 @@
+import chalk from 'chalk';
+
 import apiService from '../services/api.service.js';
 import storageService from '../services/storage.service.js';
 import logService from '../services/log.service.js';
@@ -16,7 +18,20 @@ export const getWeather = async () => {
 
   try {
     const data = await apiService.getWeather(token, city);
-    console.log(data);
+    const {
+      weather: [{ description, icon }],
+      main: { temp, pressure, humidity, feels_like },
+      name,
+    } = data;
+
+    console.log(`
+${chalk.magenta(`Weather in ${name} today:`)}
+${apiService.getIconEmoji(icon)} ${temp}°C, ${description}
+
+${chalk.cyanBright(`Feels like: ${feels_like}°C
+Humidity: ${humidity}%
+Pressure: ${pressure}`)}
+    `);
   } catch (error) {
     if (error?.response?.status == 404) {
       logService.printError('City is set incorrectly');

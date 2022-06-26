@@ -16,6 +16,23 @@ class ApiService {
 
     return data;
   }
+
+  getIconEmoji(code) {
+    const key = code.slice(0, -1);
+    const dictionary = {
+      '01': '☀',
+      '02': '🌥',
+      '03': '☁',
+      '04': '☁',
+      '09': '🌧',
+      10: '🌦',
+      11: '🌩',
+      13: '🌨',
+      50: '❄',
+      default: '❓',
+    };
+    return key in dictionary ? dictionary[key] : dictionary.default;
+  }
 }
 
 export default new ApiService();
