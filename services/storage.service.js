@@ -17,7 +17,7 @@ class StorageService {
   async getKeyValue (key){
     if (await this.isExist(this.configPath)) {
       const file = await readFile(this.configPath);
-      data = JSON.parse(file);
+      const data = JSON.parse(file);
       return data[key];
     }
   };
