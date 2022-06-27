@@ -1,6 +1,9 @@
 import { readFile, stat, writeFile } from 'fs/promises';
 import { homedir } from 'os';
 import { join } from 'path';
+
+import logService from './log.service.js';
+
 class StorageService {
   configPath = join(homedir(), 'weather-data.json');
 
@@ -14,13 +17,17 @@ class StorageService {
     await writeFile(this.configPath, JSON.stringify(data));
   }
 
-  async getKeyValue (key){
+  async getKeyValue(key) {
     if (await this.isExist(this.configPath)) {
-      const file = await readFile(this.configPath);
-      const data = JSON.parse(file);
-      return data[key];
+      try {
+        const file = await readFile(this.configPath, 'utf-8');
+        const data = await JSON.parse(file);
+        return data[key];
+      } catch (error) {
+        logService.printError(error.message);
+      }
     }
-  };
+  }
 
   isExist = async (path) => {
     try {

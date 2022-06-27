@@ -13,7 +13,7 @@ export const getWeather = async () => {
   }
 
   if (!city) {
-    throw new Error('City not specified, to set it use command -c [CiTY]');
+    throw new Error('City not specified, to set it use command -c [CITY]');
   }
 
   try {
