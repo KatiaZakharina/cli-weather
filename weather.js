@@ -2,12 +2,15 @@
 
 import { getArgs } from './helpers/args.js';
 import commands from './commands/index.js';
+import { getWeather } from './commands/getWeather.js';
 
-const initCLI = () => {
+const initCLI = async () => {
   const args = getArgs(process.argv);
 
-  Object.entries(args).forEach(([key, value]) => {
-    key in commands ? commands[key](value) : commands.default(key);
-  });
+  for (let [key, value] of Object.entries(args)) {
+    key in commands ? await commands[key](value) : commands.default(key);
+  }
+
+  getWeather();
 };
 initCLI();
